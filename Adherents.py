@@ -4,6 +4,7 @@ from mysql.connector import Error
 from mysql.connector import errorcode
 from Bibliotheque import Bibliotheque
 # from Livres import Livres
+from Mysql_connect import Mysql_connect
 
 
 class Adherents (Bibliotheque):    
@@ -14,8 +15,9 @@ class Adherents (Bibliotheque):
     prenom = ""
     inscrit = True
     Date = ""
+    connect = Mysql_connect()
     
-    def __init__(self,id_adherent,nom,prenom,inscrit,date,id_bibliotheque):
+    def __init__(self,id_adherent,nom,prenom,inscrit,date,id_bibliotheque=0):
         super().__init__(id_bibliotheque)
         self.id_adherent = id_adherent
         self.nom = nom
@@ -56,9 +58,8 @@ class Adherents (Bibliotheque):
     def creer_adherent(self,id_adherent,id_biblio,nom,prenom,inscrit,date):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -89,9 +90,8 @@ class Adherents (Bibliotheque):
     def modifier_adherent(self,id_adherent,nom,prenom,inscrit,date):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -119,9 +119,8 @@ class Adherents (Bibliotheque):
     def supprimer_adherent(self,id_adherent):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -150,9 +149,8 @@ class Adherents (Bibliotheque):
         
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
 

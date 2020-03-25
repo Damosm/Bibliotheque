@@ -2,12 +2,14 @@ import pandas as pd
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
+from Mysql_connect import Mysql_connect
 
 
 class Bibliotheque :    
 
         
     id_bibliotheque=0
+    connect = Mysql_connect()
         
     def __init__(self,id_bibliotheque):
         self.id_bibliotheque = id_bibliotheque
@@ -21,9 +23,8 @@ class Bibliotheque :
     def creer_bibliotheque(self,id_bibliotheque):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -54,9 +55,8 @@ class Bibliotheque :
     def modifier_bibliotheque(self,id,new_id):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -84,9 +84,8 @@ class Bibliotheque :
     def supprimer_bibliotheque(self,id):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -115,9 +114,8 @@ class Bibliotheque :
         
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
 

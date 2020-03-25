@@ -4,15 +4,22 @@ from mysql.connector import Error
 from mysql.connector import errorcode
 from Volumes import Volumes
 from Adherents import Adherents
+from Mysql_connect import Mysql_connect
 
 
 class Livres (Volumes):    
 
         
     id_livre=0
+    id_adherent = 0
+    id_volume=0
+    connect = Mysql_connect()
     
     
-    def __init__(self,id_livre,id_volume,auteur,id_document,titre,id_bibliotheque):
+    
+    
+    
+    def __init__(self,id_livre,id_volume,auteur,id_document=0,titre=0,id_bibliotheque=0):
         super().__init__(id_volume,auteur,id_document,titre,id_bibliotheque)
         self.id_livre = id_livre
         
@@ -23,14 +30,25 @@ class Livres (Volumes):
     def setId_livre (self, id_livre):
         self.id_livre = id_livre
     
+    def getId_adherent(self):
+        return self.id_adherent
+    
+    def setId_adherent (self, id_adherent):
+        self.id_adherent = id_adherent
+    
+    def getId_volume(self):
+        return self.id_volume
+    
+    def setId_volume (self, id_volume):
+        self.id_volume = id_volume
+    
     
     
     def creer_livre(self,id_livre,id_volume):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -61,9 +79,8 @@ class Livres (Volumes):
     def modifier_livre(self,id_livre,id_adherent):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -91,9 +108,8 @@ class Livres (Volumes):
     def supprimer_livre(self,id_livre):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -121,25 +137,27 @@ class Livres (Volumes):
     def liste_livres (self) :
         
         try :
-  
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            
+            cnx = self.connect.connexion()  
+            
             if (cnx.is_connected()):
                 print('is connected')
 
             cursor = cnx.cursor()
 
             cursor.execute('select * from livres;')
-
+            
             
             row = cursor.fetchall()
-            result = pd.DataFrame(row)
-
-            print(result)
+            
+            # result = pd.DataFrame(row)
+            # print(result)
             
             cursor.close()  
             cnx.close()
+            
+                                     
+                           
         
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
@@ -148,3 +166,11 @@ class Livres (Volumes):
             if (cnx.is_connected()):
                 cnx.close()
                 print("MySQL connection is closed")
+    
+        liste = []
+            
+        for i in row :
+            livres = Livres(i[0],i[1],i[2])
+            liste.append(livres)
+        return liste
+            

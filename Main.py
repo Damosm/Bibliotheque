@@ -73,8 +73,14 @@ if __name__ == "__main__":
     adhe3 = Adherents(3,'Dupond','Jacques',True,'2020-01-20',biblio1.getId_bibliotheque())
     
     # adhe1.creer_adherent(adhe1.getId_adherent(),adhe1.getId_bibliotheque(),adhe1.getNom(),adhe1.getPrenom(),adhe1.getInscrit(),adhe1.getDate())
-    adhe2.creer_adherent(adhe2.getId_adherent(),adhe2.getId_bibliotheque(),adhe2.getNom(),adhe2.getPrenom(),adhe2.getInscrit(),adhe2.getDate())
-    adhe3.creer_adherent(adhe3.getId_adherent(),adhe3.getId_bibliotheque(),adhe3.getNom(),adhe3.getPrenom(),adhe3.getInscrit(),adhe3.getDate())
+    # adhe2.creer_adherent(adhe2.getId_adherent(),adhe2.getId_bibliotheque(),adhe2.getNom(),adhe2.getPrenom(),adhe2.getInscrit(),adhe2.getDate())
+    # adhe3.creer_adherent(adhe3.getId_adherent(),adhe3.getId_bibliotheque(),adhe3.getNom(),adhe3.getPrenom(),adhe3.getInscrit(),adhe3.getDate())
+    
     # adhe1.liste_adherents()
+    liste_livres = []
+    liste_livres = liv1.liste_livres()
+    
+    for i , j in enumerate(liste_livres) :
+        print(j.getId_livre())
     
     

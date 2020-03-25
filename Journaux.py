@@ -3,6 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
 from Documents import Documents
+from Mysql_connect import Mysql_connect
 
 
 class Journaux (Documents):    
@@ -10,14 +11,17 @@ class Journaux (Documents):
         
     id_journaux=0
     date_de_parution = ""
+    connect = Mysql_connect()
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self,id_journaux,date_de_parution,id_document=0,titre=0):
+        super().__init__(id_document,titre)
+        self.id_journaux=id_journaux
+        self.date_de_parution=date_de_parution
 
-    def getId(self):
+    def getId_journaux(self):
         return self.id_journaux
     
-    def setId (self, id_journaux):
+    def setId_journaux(self, id_journaux):
         self.id_journaux = id_journaux
     
     def getDateDeParution(self):
@@ -26,20 +30,19 @@ class Journaux (Documents):
     def setDateDePaution (self, date_de_parution):
         self.date_de_parution = date_de_parution
     
-    def creer_journaux(self,id_doc,date_de_parution):
+    def creer_journaux(self,id_journaux,id_doc,date_de_parution):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
             cursor = cnx.cursor()
         
             
-            requete = ('insert into journaux (id_doc,date_de_parution) values (%s,%s);')        
-            values = (id_doc,date_de_parution)
+            requete = ('insert into journaux (id_journ,id_doc,date_de_parution) values (%s,%s,%s);')        
+            values = (id_journaux,id_doc,date_de_parution)
             print(requete,values)
             cursor.execute(requete,values)         
 
@@ -62,9 +65,8 @@ class Journaux (Documents):
     def modifier_journaux(self,id_journaux,date_de_parution):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -92,9 +94,8 @@ class Journaux (Documents):
     def supprimer_journaux(self,id_journaux):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -123,9 +124,8 @@ class Journaux (Documents):
         
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
 

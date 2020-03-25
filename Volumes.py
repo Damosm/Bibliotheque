@@ -3,6 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
 from Documents import Documents
+from Mysql_connect import Mysql_connect
 
 
 class Volumes (Documents):    
@@ -10,8 +11,9 @@ class Volumes (Documents):
         
     id_volume=0
     auteur = ""
+    connect = Mysql_connect()
     
-    def __init__(self,id_volume,auteur,id_document,titre,id_bibliotheque):
+    def __init__(self,id_volume,auteur,id_document=0,titre=0,id_bibliotheque=0):
         super().__init__(id_document,titre,id_bibliotheque)
         self.id_volume = id_volume
         self.auteur = auteur
@@ -31,9 +33,8 @@ class Volumes (Documents):
     def creer_volume(self,id_volume,id_doc,auteur):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -64,9 +65,8 @@ class Volumes (Documents):
     def modifier_volume(self,id_volume,auteur):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -94,9 +94,8 @@ class Volumes (Documents):
     def supprimer_volume(self,id_volume):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -125,9 +124,8 @@ class Volumes (Documents):
         
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
 

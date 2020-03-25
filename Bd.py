@@ -3,6 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
 from Volumes import Volumes
+from Mysql_connect import Mysql_connect
 
 
 class Bd (Volumes):    
@@ -10,9 +11,10 @@ class Bd (Volumes):
         
     id_bd=0
     destinataire = ""
+    connect = Mysql_connect()
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self,id_bd,destinataire,id_volume=0,auteur=0):
+        super().__init__(id_volume,auteur)
 
     def getId_bd(self):
         return self.id_bd
@@ -29,9 +31,8 @@ class Bd (Volumes):
     def creer_bd(self,id_volume,destinataire):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -62,9 +63,8 @@ class Bd (Volumes):
     def modifier_bd(self,id_bd,destinataire):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -92,9 +92,8 @@ class Bd (Volumes):
     def supprimer_bd(self,id_bd):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -123,9 +122,8 @@ class Bd (Volumes):
         
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
 

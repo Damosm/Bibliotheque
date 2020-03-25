@@ -3,15 +3,17 @@ import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
 from Volumes import Volumes
+from Mysql_connect import Mysql_connect
 
 
 class Dictionnaires (Volumes):    
 
         
     id_dictionnaire=0
+    connect = Mysql_connect()
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self,id_dictionnaire,id_volume=0,auteur=0):
+        super().__init__(id_volume,auteur)
     
 
     def getIdDictionnaire(self):
@@ -25,9 +27,8 @@ class Dictionnaires (Volumes):
     def creer_dictionnaire(self,id_volume):
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                    host='127.0.0.1',
-                                    database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
             
@@ -58,9 +59,8 @@ class Dictionnaires (Volumes):
     # def modifier_dictionnaire(self,id_journaux,date_de_parution):
     #     try :
   
-    #         cnx = mysql.connector.connect(user='root', password='damos02',
-    #                                 host='127.0.0.1',
-    #                                 database='bibliotheque')
+    #         cnx = self.connect.connexion()
+    
     #         if (cnx.is_connected()):
     #             print('is connected')
             
@@ -88,9 +88,8 @@ class Dictionnaires (Volumes):
     # def supprimer_journaux(self,id_journaux):
     #     try :
   
-    #         cnx = mysql.connector.connect(user='root', password='damos02',
-    #                                 host='127.0.0.1',
-    #                                 database='bibliotheque')
+    #         cnx = self.connect.connexion()
+    
     #         if (cnx.is_connected()):
     #             print('is connected')
             
@@ -119,9 +118,8 @@ class Dictionnaires (Volumes):
         
         try :
   
-            cnx = mysql.connector.connect(user='root', password='damos02',
-                                        host='127.0.0.1',
-                                        database='bibliotheque')
+            cnx = self.connect.connexion()
+            
             if (cnx.is_connected()):
                 print('is connected')
 
