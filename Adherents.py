@@ -82,10 +82,7 @@ class Adherents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to insert record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def modifier_adherent(self,id_adherent,nom,prenom,inscrit,date):
         try :
@@ -111,10 +108,7 @@ class Adherents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to update record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def supprimer_adherent(self,id_adherent):
         try :
@@ -140,10 +134,7 @@ class Adherents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to delete record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def liste_adherents (self) :
         
@@ -170,7 +161,4 @@ class Adherents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        

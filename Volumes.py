@@ -57,10 +57,7 @@ class Volumes (Documents):
         except mysql.connector.Error as error:
             print("Failed to insert record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def modifier_volume(self,id_volume,auteur):
         try :
@@ -86,10 +83,7 @@ class Volumes (Documents):
         except mysql.connector.Error as error:
             print("Failed to update record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def supprimer_volume(self,id_volume):
         try :
@@ -115,10 +109,7 @@ class Volumes (Documents):
         except mysql.connector.Error as error:
             print("Failed to delete record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def liste_volumes (self) :
         
@@ -145,7 +136,4 @@ class Volumes (Documents):
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        

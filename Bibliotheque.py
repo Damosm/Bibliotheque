@@ -47,10 +47,7 @@ class Bibliotheque :
         except mysql.connector.Error as error:
             print("Failed to insert record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def modifier_bibliotheque(self,id,new_id):
         try :
@@ -76,10 +73,7 @@ class Bibliotheque :
         except mysql.connector.Error as error:
             print("Failed to update record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def supprimer_bibliotheque(self,id):
         try :
@@ -105,10 +99,7 @@ class Bibliotheque :
         except mysql.connector.Error as error:
             print("Failed to delete record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def liste_bibliotheques (self) :
         
@@ -135,7 +126,4 @@ class Bibliotheque :
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        

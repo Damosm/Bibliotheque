@@ -71,12 +71,9 @@ class Livres (Volumes):
         except mysql.connector.Error as error:
             print("Failed to insert record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
-    def modifier_livre(self,id_livre,id_adherent):
+    def emprunter_livre(self,id_livre,id_adherent):
         try :
   
             cnx = self.connect.connexion()
@@ -100,10 +97,7 @@ class Livres (Volumes):
         except mysql.connector.Error as error:
             print("Failed to update record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def supprimer_livre(self,id_livre):
         try :
@@ -129,10 +123,7 @@ class Livres (Volumes):
         except mysql.connector.Error as error:
             print("Failed to delete record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def liste_livres (self) :
         
@@ -162,10 +153,7 @@ class Livres (Volumes):
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
         liste = []
             

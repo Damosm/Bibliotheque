@@ -57,10 +57,7 @@ class Documents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to insert record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def modifier_document(self,id_doc,titre):
         try :
@@ -86,10 +83,7 @@ class Documents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to update record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def supprimer_document(self,id_doc):
         try :
@@ -115,10 +109,7 @@ class Documents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to delete record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def liste_documents (self) :
         
@@ -145,7 +136,4 @@ class Documents (Bibliotheque):
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        

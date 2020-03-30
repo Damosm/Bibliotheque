@@ -57,10 +57,7 @@ class Journaux (Documents):
         except mysql.connector.Error as error:
             print("Failed to insert record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def modifier_journaux(self,id_journaux,date_de_parution):
         try :
@@ -86,10 +83,7 @@ class Journaux (Documents):
         except mysql.connector.Error as error:
             print("Failed to update record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def supprimer_journaux(self,id_journaux):
         try :
@@ -115,10 +109,7 @@ class Journaux (Documents):
         except mysql.connector.Error as error:
             print("Failed to delete record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
     
     def liste_journaux (self) :
         
@@ -145,7 +136,4 @@ class Journaux (Documents):
         except mysql.connector.Error as error:
             print("Failed to select record {}".format(error))
 
-        finally:
-            if (cnx.is_connected()):
-                cnx.close()
-                print("MySQL connection is closed")
+        
